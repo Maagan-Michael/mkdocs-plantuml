@@ -19,11 +19,15 @@ jobs:
       - name: Login to GitHub Container Registry
         run: echo "${{ secrets.github_token }}" | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
 
+      - name: downcase REPO
+        run: |
+          echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
+
       - name: Build and tag Docker image
-        run: docker build -t ghcr.io/${{ github.repository }}:${{ github.sha }} .
+        run: docker build -t ghcr.io/${{ REPO }}:${{ github.sha }} .
 
       - name: Push Docker image to GHCR
-        run: docker push ghcr.io/${{ github.repository }}:${{ github.sha }}
+        run: docker push ghcr.io/${{ REPO }}:${{ github.sha }}
 
       - name: Cleanup
         run: |
