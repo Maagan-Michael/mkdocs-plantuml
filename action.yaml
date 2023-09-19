@@ -1,0 +1,10 @@
+# action.yaml
+name: 'Deploy MkDocs + PlantUML'
+description: 'Deploys MkDocs site with inline PlantUML diagrams'
+author: 'Yaron Shahrabani, sh.yaron@gmail.com'
+branding:
+  icon: 'book-open'
+  color: 'green'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
