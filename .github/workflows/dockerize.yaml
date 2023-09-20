@@ -28,7 +28,7 @@ jobs:
       - name: Build and tag Docker image
         run: |
           docker build -t ghcr.io/${REPO}:${{ github.sha }} .
-          docker tag ghcr.io/${{ github.repository }}:${{ github.sha }} ghcr.io/${{ github.repository }}:latest
+          docker tag ghcr.io/${REPO}:${{ github.sha }} ghcr.io/${REPO}:latest
 
       - name: Push Docker image to GHCR
         run: |
